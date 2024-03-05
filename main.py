@@ -297,7 +297,7 @@ RFl = """
                                              \██████
                                                \████
                                                  \██
-                                                   \\
+                                                   \\  
 """
 
 RFFl = """ 
@@ -420,6 +420,32 @@ FFRFl = """
 
 """
 
+MDU = """
+' '
+[_]
+J L
+"""
+MDR = """
+ ,,
+[}-
+JL 
+"""
+MDL = """
+,, 
+-{]
+ JL
+"""
+MDD = """
+. .
+{_}
+J L
+"""
+
+directed_mole = {1: list(MDU.split('\n')[1:-1]),
+                 2: list(MDR.split('\n')[1:-1]),
+                 3: list(MDD.split('\n')[1:-1]),
+                 4: list(MDL.split('\n')[1:-1])}
+
 # парсинг карты
 cardd = open("map.txt").read().split('\n')
 width, height = len(cardd[0]), len(cardd)
@@ -479,8 +505,7 @@ def print3D(y, x, display):
             to_print.append(LFFFl)
         # front front left/right
         if not (FFl in to_print or FFFl in to_print):
-            if card[player_cods[0] + 2 * direction[player_direct][0]][
-                player_cods[1] - direction[player_direct][0]] == '#':
+            if card[player_cods[0] + 2 * direction[player_direct][0]][player_cods[1] - direction[player_direct][0]] == '#':
                 to_print.append(FFRFl)
             if card[player_cods[0] + 2 * direction[player_direct][0]][
                 player_cods[1] + direction[player_direct][0]] == '#':
@@ -519,8 +544,7 @@ def print3D(y, x, display):
             to_print.append(LFFFl)
         # front front left/right
         if not (FFl in to_print or FFFl in to_print):
-            if card[player_cods[0] + direction[player_direct][1]][
-                player_cods[1] + 2 * direction[player_direct][1]] == '#':
+            if card[player_cods[0] + direction[player_direct][1]][player_cods[1] + 2 * direction[player_direct][1]] == '#':
                 to_print.append(FFRFl)
             if card[player_cods[0] - direction[player_direct][1]][
                 player_cods[1] + 2 * direction[player_direct][1]] == '#':
@@ -550,10 +574,14 @@ def printMmap(y, x, display):
                 miniMap[i + 3][j + 3] = card[player_cods[0] + i][player_cods[1] + j]
                 if miniMap[i + 3][j + 3] == "#":
                     miniMap[i + 3][j + 3] = "█"
-    miniMap[3][3] = "P"
-    for i in range(0, 7, 1):
-        for j in range(0, 7, 1):
-            display[y + i][x + j] = miniMap[i][j]
+    for i in range(0, 20, 3):
+        for j in range(0, 20, 3):
+            for xx in range(3):
+                for yy in range(3):
+                    display[y + i + yy][x + j + xx] = miniMap[i//3][j//3]
+    for xx in range(3):
+        for yy in range(3):
+            display[y + 9 + yy][x + 9 + xx] = directed_mole[player_direct][yy][xx]
 
 
 def move():
