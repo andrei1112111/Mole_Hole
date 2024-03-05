@@ -1,13 +1,14 @@
 #   ---CAAL2O4--- engine
 from graphics import *
 
-texts = {1: ("ВЫ УПЕРЛИСЬ В СТЕНУ.", 20)}
+texts = {0: ("", 37),
+         1: ("ВЫ ТКНУЛИ ПАЛКОЙ В ПОЛ. НИЧЕГО НЕ ПРОИЗОШЛО?", 15)}  # количество букв строго четно. число - отступ
 directed_mole = {1: list(MDU.split('\n')[1:-1]),
                  2: list(MDR.split('\n')[1:-1]),
                  3: list(MDD.split('\n')[1:-1]),
                  4: list(MDL.split('\n')[1:-1])}
 
-INVENTORY = [list(DEFAULT_STICK.split('\n')[1:-1])]
+INVENTORY = [DEFAULT_STICK]
 
 CURRENT_TEXT = 0
 CURRENT_HP = 10
@@ -127,7 +128,12 @@ def print3D(y, x, display):
 
 def printText(y, x, display):
     # 74 symbols for text
-    # texts[CURRENT_TEXT]
+    for i in range(texts[CURRENT_TEXT][1]):
+        display[y][x + i] = ' '
+    for i in range(74 - 2 * texts[CURRENT_TEXT][1]):
+        display[y][x + texts[CURRENT_TEXT][1] + i] = texts[CURRENT_TEXT][0][i]
+    for i in range(texts[CURRENT_TEXT][1]):
+        display[y][x + i + 74 - texts[CURRENT_TEXT][1]] = ' '
     pass
 
 
@@ -164,6 +170,7 @@ def printInv(y, x, display):
         display[y+2][x + 68] = str(CURRENT_HG)
     # PRINT ITEMS (10 symbols between)
     for k, item in enumerate(INVENTORY):
+        item = list(item.split('\n')[1:-1])
         for yy in range(4):
             for xx in range(9):
                 display[y+yy][x+(k*10)+xx] = item[yy][xx]
@@ -190,9 +197,9 @@ def printMmap(y, x, display):
 
 
 def move():
-    global player_direct
-
-    inp = input("Type: (W, A, D, E, I, Q)")
+    global player_direct, CURRENT_TEXT
+    CURRENT_TEXT = 0
+    inp = input("Type: (W, A, D, Q, 1-5 item number)")
     if inp == 'a':
         player_direct -= 1
         if player_direct < 1:
@@ -208,6 +215,11 @@ def move():
             player_cods[1] += direction[player_direct][1]
     elif inp == 'q':
         exit(0)
+    elif '1' <= inp <= '5':
+        if len(INVENTORY) >= int(inp):
+            a = INVENTORY[int(inp)-1]
+            if INVENTORY[int(inp)-1] == DEFAULT_STICK:
+                CURRENT_TEXT = 1
 
 
 def fprint(display):
