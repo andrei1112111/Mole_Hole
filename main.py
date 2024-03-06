@@ -247,10 +247,9 @@ if __name__ == "__main__":
     display.append(["#"] * 76)
     # game loop
     while True:
-        print3D(1, 1, display)
-        printMmap(1, 54, display)
-        printText(29, 1, display)
-        printInv(31, 1, display)
+        # print3D(1, 1, display)
+        # printMmap(1, 54, display)
+        # printText(29, 1, display)
+        # printInv(31, 1, display)
         fprint(display)
         move()
-#         #         #         #         #         # HP |          |(  /  ) #
