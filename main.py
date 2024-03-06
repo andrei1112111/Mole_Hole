@@ -1,5 +1,7 @@
 #   ---CAAL2O4--- engine
 from graphics import *
+import os
+
 
 texts = {0: ("", 37),
          1: ("ВЫ ТКНУЛИ ПАЛКОЙ В ПОЛ. НИЧЕГО НЕ ПРОИЗОШЛО?", 15)}  # количество букв строго четно. число - отступ
@@ -79,6 +81,10 @@ def print3D(y, x, display):
             if card[player_cods[0] + 2 * direction[player_direct][0]][
                 player_cods[1] + direction[player_direct][0]] == '#':
                 to_print.append(FFLFl)
+        if card[player_cods[0] + 3 * direction[player_direct][0]][player_cods[1] + direction[player_direct][0]] == '#' and not (FFLFl in to_print):
+            to_print.append(LFFFFl)
+        if card[player_cods[0] + 3 * direction[player_direct][0]][player_cods[1] - direction[player_direct][0]] == '#' and not (FFRFl in to_print):
+            to_print.append(RFFFFl)
 
     if player_direct in [2, 4]:
         if card[player_cods[0]][player_cods[1] + direction[player_direct][1]] == '#':
@@ -118,6 +124,10 @@ def print3D(y, x, display):
             if card[player_cods[0] - direction[player_direct][1]][
                 player_cods[1] + 2 * direction[player_direct][1]] == '#':
                 to_print.append(FFLFl)
+        if card[player_cods[0] + direction[player_direct][1]][player_cods[1] + 3 * direction[player_direct][1]] == '#' and not (FFRFl in to_print):
+            to_print.append(RFFFFl)
+        if card[player_cods[0] - direction[player_direct][1]][player_cods[1] + 3 * direction[player_direct][1]] == '#' and not (FFLFl in to_print):
+            to_print.append(LFFFFl)
 
     for i in reversed(to_print):
         for yy, j in enumerate(i.split("\n")[1:-1]):
@@ -223,6 +233,7 @@ def move():
 
 
 def fprint(display):
+    os.system('clear')
     for i in display:
         for j in i:
             print(j, end='')
@@ -247,9 +258,9 @@ if __name__ == "__main__":
     display.append(["#"] * 76)
     # game loop
     while True:
-        # print3D(1, 1, display)
-        # printMmap(1, 54, display)
-        # printText(29, 1, display)
-        # printInv(31, 1, display)
+        print3D(1, 1, display)
+        printMmap(1, 54, display)
+        printText(29, 1, display)
+        printInv(31, 1, display)
         fprint(display)
         move()

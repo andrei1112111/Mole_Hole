@@ -22,6 +22,7 @@
       <a name="valign" val="base"/>
     </tool>
   </lib>
+  <lib desc="jar#logisim-uart.jar#org.cdm.logisim.uart.Components" name="7"/>
   <main name="main"/>
   <options>
     <a name="gateUndefined" val="ignore"/>
@@ -60,28 +61,148 @@
     <a name="clabel" val=""/>
     <a name="clabelup" val="east"/>
     <a name="clabelfont" val="SansSerif plain 12"/>
-    <comp lib="0" loc="(120,240)" name="Constant">
-      <a name="width" val="8"/>
-      <a name="value" val="0x4c"/>
+    <wire from="(940,900)" to="(940,910)"/>
+    <wire from="(710,1370)" to="(760,1370)"/>
+    <wire from="(1000,900)" to="(1000,910)"/>
+    <wire from="(640,1410)" to="(640,1860)"/>
+    <wire from="(430,1910)" to="(480,1910)"/>
+    <wire from="(470,1670)" to="(520,1670)"/>
+    <wire from="(430,1870)" to="(430,1880)"/>
+    <wire from="(450,1810)" to="(450,1830)"/>
+    <wire from="(420,1700)" to="(420,1730)"/>
+    <wire from="(940,970)" to="(940,1050)"/>
+    <wire from="(510,1560)" to="(510,1920)"/>
+    <wire from="(760,1370)" to="(780,1370)"/>
+    <wire from="(1000,970)" to="(1000,1080)"/>
+    <wire from="(240,1870)" to="(400,1870)"/>
+    <wire from="(240,1830)" to="(450,1830)"/>
+    <wire from="(540,1540)" to="(540,1600)"/>
+    <wire from="(480,1660)" to="(610,1660)"/>
+    <wire from="(610,1610)" to="(610,1660)"/>
+    <wire from="(550,1800)" to="(550,1810)"/>
+    <wire from="(470,1800)" to="(470,1810)"/>
+    <wire from="(540,1540)" to="(580,1540)"/>
+    <wire from="(370,1970)" to="(480,1970)"/>
+    <wire from="(430,1880)" to="(430,1910)"/>
+    <wire from="(420,1700)" to="(460,1700)"/>
+    <wire from="(480,1930)" to="(480,1970)"/>
+    <wire from="(970,970)" to="(970,1080)"/>
+    <wire from="(550,1840)" to="(550,1880)"/>
+    <wire from="(540,1370)" to="(540,1540)"/>
+    <wire from="(480,1540)" to="(500,1540)"/>
+    <wire from="(540,1600)" to="(560,1600)"/>
+    <wire from="(540,1620)" to="(560,1620)"/>
+    <wire from="(520,1560)" to="(520,1670)"/>
+    <wire from="(780,950)" to="(780,1370)"/>
+    <wire from="(540,1370)" to="(570,1370)"/>
+    <wire from="(430,1810)" to="(450,1810)"/>
+    <wire from="(450,1810)" to="(470,1810)"/>
+    <wire from="(240,1830)" to="(240,1870)"/>
+    <wire from="(910,900)" to="(940,900)"/>
+    <wire from="(480,1540)" to="(480,1660)"/>
+    <wire from="(630,1550)" to="(630,1800)"/>
+    <wire from="(430,1880)" to="(440,1880)"/>
+    <wire from="(780,930)" to="(910,930)"/>
+    <wire from="(780,950)" to="(910,950)"/>
+    <wire from="(510,1920)" to="(640,1920)"/>
+    <wire from="(470,1800)" to="(550,1800)"/>
+    <wire from="(550,1800)" to="(630,1800)"/>
+    <wire from="(620,1550)" to="(630,1550)"/>
+    <wire from="(530,1540)" to="(540,1540)"/>
+    <wire from="(600,1610)" to="(610,1610)"/>
+    <wire from="(570,1560)" to="(580,1560)"/>
+    <comp lib="6" loc="(402,1851)" name="Text">
+      <a name="text" val="Print Frame"/>
     </comp>
-    <comp lib="6" loc="(180,154)" name="Text">
+    <comp lib="4" loc="(710,1370)" name="RAM">
+      <a name="addrWidth" val="12"/>
+    </comp>
+    <comp lib="0" loc="(760,1370)" name="Probe">
+      <a name="facing" val="south"/>
+      <a name="radix" val="16"/>
+    </comp>
+    <comp lib="6" loc="(375,1387)" name="Text">
+      <a name="text" val="ШИРИНА(76)"/>
+    </comp>
+    <comp lib="6" loc="(398,1781)" name="Text">
+      <a name="text" val="Frame Printed"/>
+    </comp>
+    <comp lib="0" loc="(550,1880)" name="Tunnel">
+      <a name="label" val="readConsole"/>
+    </comp>
+    <comp lib="0" loc="(970,1080)" name="Pin">
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="0" loc="(540,1620)" name="Constant">
+      <a name="width" val="12"/>
+    </comp>
+    <comp lib="0" loc="(430,1810)" name="Pin">
+      <a name="output" val="true"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="6" loc="(490,1294)" name="Text">
       <a name="text" val="12 бит адрес"/>
     </comp>
-    <comp lib="0" loc="(120,210)" name="Constant">
+    <comp lib="1" loc="(550,1840)" name="NOT Gate">
+      <a name="facing" val="south"/>
+    </comp>
+    <comp lib="3" loc="(620,1550)" name="Comparator">
+      <a name="width" val="12"/>
+    </comp>
+    <comp lib="1" loc="(430,1870)" name="NOT Gate"/>
+    <comp lib="4" loc="(530,1540)" name="Register">
+      <a name="width" val="12"/>
+    </comp>
+    <comp lib="7" loc="(910,910)" name="UART"/>
+    <comp lib="0" loc="(640,1920)" name="Tunnel">
+      <a name="label" val="clc"/>
+    </comp>
+    <comp lib="0" loc="(570,1510)" name="Constant">
+      <a name="width" val="12"/>
+      <a name="value" val="0xaaf"/>
+    </comp>
+    <comp lib="0" loc="(430,1350)" name="Constant">
       <a name="width" val="8"/>
       <a name="value" val="0x24"/>
     </comp>
-    <comp lib="6" loc="(181,170)" name="Text">
+    <comp lib="0" loc="(430,1380)" name="Constant">
+      <a name="width" val="8"/>
+      <a name="value" val="0x4c"/>
+    </comp>
+    <comp lib="0" loc="(1000,1080)" name="Tunnel">
+      <a name="label" val="readConsole"/>
+    </comp>
+    <comp lib="0" loc="(570,1560)" name="Constant">
+      <a name="width" val="12"/>
+      <a name="value" val="0x16"/>
+    </comp>
+    <comp lib="1" loc="(470,1880)" name="NOT Gate"/>
+    <comp lib="6" loc="(491,1310)" name="Text">
       <a name="text" val="2736 СИМВОЛОВ ВСЕГО"/>
     </comp>
-    <comp lib="6" loc="(65,247)" name="Text">
-      <a name="text" val="ШИРИНА(76)"/>
+    <comp lib="1" loc="(510,1920)" name="AND Gate">
+      <a name="size" val="30"/>
+      <a name="inputs" val="2"/>
     </comp>
-    <comp lib="6" loc="(64,216)" name="Text">
+    <comp lib="1" loc="(470,1670)" name="OR Gate">
+      <a name="facing" val="north"/>
+      <a name="size" val="30"/>
+      <a name="inputs" val="2"/>
+    </comp>
+    <comp lib="3" loc="(600,1610)" name="Adder">
+      <a name="width" val="12"/>
+    </comp>
+    <comp lib="5" loc="(420,1730)" name="Button">
+      <a name="facing" val="north"/>
+      <a name="label" val="RESET MEMORY COUNTER"/>
+      <a name="labelloc" val="north"/>
+    </comp>
+    <comp lib="0" loc="(370,1970)" name="Clock"/>
+    <comp lib="6" loc="(374,1356)" name="Text">
       <a name="text" val="ВЫСОТА(36)"/>
     </comp>
-    <comp lib="4" loc="(400,230)" name="RAM">
-      <a name="addrWidth" val="12"/>
+    <comp lib="0" loc="(940,1050)" name="Tunnel">
+      <a name="label" val="clc"/>
     </comp>
   </circuit>
 </project>
