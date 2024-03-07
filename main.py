@@ -38,10 +38,6 @@ for y, i in enumerate(cardd):
 
 
 def print3D(y, x, display):
-    for yy, j in enumerate(nothing.split("\n")[1:-1]):
-        for xx, k in enumerate(j):
-            display[y + yy][x + xx] = k
-
     to_print = []
     if player_direct in [1, 3]:
         if card[player_cods[0] + direction[player_direct][0]][player_cods[1]] == '#':
@@ -129,6 +125,9 @@ def print3D(y, x, display):
         if card[player_cods[0] - direction[player_direct][1]][player_cods[1] + 3 * direction[player_direct][1]] == '#' and not (FFLFl in to_print):
             to_print.append(LFFFFl)
 
+    for yy, j in enumerate(nothing.split("\n")[1:-1]):
+        for xx, k in enumerate(j):
+            display[y + yy][x + xx] = k
     for i in reversed(to_print):
         for yy, j in enumerate(i.split("\n")[1:-1]):
             for xx, k in enumerate(j):
