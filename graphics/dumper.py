@@ -1,5 +1,4 @@
 def create_lines(data):
-    data = "\0" + data
     dataa = []
     for i in data.split('\n'):
         while len(i) < 52:
@@ -36,7 +35,12 @@ for root, dirs, files in os.walk("./graphics"):
             print(filename, end=' ')
             with open("graphics/" + filename, "r") as inp:
                 with open("graphics/" + filename[:-4], "w") as out:
-                    res = create_lines(inp.read())
+                    data = "\0" + inp.read()
+                    res = create_lines(data)
                     out.writelines(res)
 
-
+# with open("graphics/" + "test_map.txt", "r") as inp:
+#     with open("graphics/" + "test_map", "w") as out:
+#         data = "\0" + chr(3) + chr(2) + chr(2) + inp.read()
+#         res = create_lines(data)
+#         out.writelines(res)
