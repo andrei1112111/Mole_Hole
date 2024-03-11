@@ -1,21 +1,32 @@
 #   ---CAAL2O4--- engine
 from graphics import *
-import os
 
 
-texts = {0: ("", 37),
-         1: ("ВЫ ТКНУЛИ ПАЛКОЙ В ПОЛ. НИЧЕГО НЕ ПРОИЗОШЛО?", 15)}  # количество букв строго четно. число - отступ
+# all text contains 74 symbols
+texts = {0: "                                                                          ",
+         1: "               ВЫ ТКНУЛИ ПАЛКОЙ В ПОЛ. НИЧЕГО НЕ ПРОИЗОШЛО?               ",
+         2: "         ВЫ ТКНУЛИ                      ПАЛКОЙ И НАНЕСЛИ   УРОНА          ",
+         3: "                   ВЫ ПОБЕДИЛИ                      !                     "
+         }  # количество букв строго четно. число - отступ
 directed_mole = {1: list(MDU.split('\n')[1:-1]),
                  2: list(MDR.split('\n')[1:-1]),
                  3: list(MDD.split('\n')[1:-1]),
                  4: list(MDL.split('\n')[1:-1])}
 
-INVENTORY = [DEFAULT_STICK]
+INVENTORY = [1]
+ITEMS = {1: DEFAULT_STICK}
+ITEMSdmg = {1: 5}
 
 CURRENT_TEXT = 0
 CURRENT_HP = 10
 CURRENT_ST = 0
 CURRENT_HG = 1
+
+atcRat = [list(i) for i in atcRat.split("\n")]
+
+ENEMYname = " Small Strange Rat! "  # all name contains 20 symbols
+ENEMYhp = 10
+ENEMYtxtr = atcRat
 
 # парсинг карты
 cardd = open("map.txt").read().split('\n')
@@ -137,13 +148,8 @@ def print3D(y, x, display):
 
 def printText(y, x, display):
     # 74 symbols for text
-    for i in range(texts[CURRENT_TEXT][1]):
-        display[y][x + i] = ' '
-    for i in range(74 - 2 * texts[CURRENT_TEXT][1]):
-        display[y][x + texts[CURRENT_TEXT][1] + i] = texts[CURRENT_TEXT][0][i]
-    for i in range(texts[CURRENT_TEXT][1]):
-        display[y][x + i + 74 - texts[CURRENT_TEXT][1]] = ' '
-    pass
+    for i in range(74):
+        display[y][x + i] = texts[CURRENT_TEXT][i]
 
 
 def printInv(y, x, display):
@@ -157,29 +163,9 @@ def printInv(y, x, display):
         display[y][x + 68] = '0'
     else:
         display[y][x + 68] = str(CURRENT_HP)
-
-    for i in range(0, CURRENT_ST):
-        display[y+1][x+55+i] = '#'
-    for i in range(CURRENT_ST, 9):
-        display[y+1][x+55+i] = ' '
-    if CURRENT_ST == 10:
-        display[y+1][x + 67] = '1'
-        display[y+1][x + 68] = '0'
-    else:
-        display[y+1][x + 68] = str(CURRENT_ST)
-
-    for i in range(0, CURRENT_HG):
-        display[y+2][x+55+i] = '#'
-    for i in range(CURRENT_HG, 9):
-        display[y+2][x+55+i] = ' '
-    if CURRENT_HG == 10:
-        display[y+2][x + 67] = '1'
-        display[y+2][x + 68] = '0'
-    else:
-        display[y+2][x + 68] = str(CURRENT_HG)
     # PRINT ITEMS (10 symbols between)
     for k, item in enumerate(INVENTORY):
-        item = list(item.split('\n')[1:-1])
+        item = list(ITEMS[item].split('\n')[1:-1])
         for yy in range(4):
             for xx in range(9):
                 display[y+yy][x+(k*10)+xx] = item[yy][xx]
@@ -227,17 +213,51 @@ def move():
     elif '1' <= inp <= '5':
         if len(INVENTORY) >= int(inp):
             a = INVENTORY[int(inp)-1]
-            if INVENTORY[int(inp)-1] == DEFAULT_STICK:
+            if INVENTORY[int(inp)-1] == 1:
                 CURRENT_TEXT = 1
 
 
 def fprint(display):
-    os.system('clear')
     for i in display:
         for j in i:
             print(j, end='')
         print()
 
+
+def aprintEnemy(y, x, aboard):
+    for yy in range(8):
+        for xx in range(22):
+            aboard[y+yy][x+xx] = atcRat[yy][xx]
+
+
+def aprintEnemyName(y, x, aboard):
+    for i in range(20):
+        aboard[y][x + i] = ENEMYname[i]
+    if ENEMYhp == 10:
+        aboard[y][x + 23] = '1'
+        aboard[y][x + 24] = '0'
+    else:
+        aboard[y][x + 23] = ' '
+        aboard[y][x + 24] = str(ENEMYhp)
+
+
+def amove():
+    global CURRENT_TEXT, ENEMYhp
+    inp = input("Type 1-5 item number to use it")
+    if inp == 'q':
+        exit(0)
+    elif '1' <= inp <= '5':
+        if len(INVENTORY) >= int(inp):
+            if INVENTORY[int(inp)-1] == 1:
+                ENEMYhp -= ITEMSdmg[1]
+                CURRENT_TEXT = 2
+
+
+def acheck():
+    global game_state, CURRENT_TEXT
+    if ENEMYhp <= 0:
+        game_state = 1
+        CURRENT_TEXT = 3
 
 if __name__ == "__main__":
     # display init
@@ -251,15 +271,27 @@ if __name__ == "__main__":
     display.append(["#"] + [" "] * 74 + ["#"])
     display.append(["#"] * 76)
     display.append(list("#         #         #         #         #         # HP |          |(  /10) #"))
-    display.append(list("#         #         #         #         #         # ST |          |(  /10) #"))
-    display.append(list("#         #         #         #         #         # HG |          |(  /10) #"))
+    display.append(list("#         #         #         #         #         #                        #"))
+    display.append(list("#         #         #         #         #         #                        #"))
     display.append(list("#         #         #         #         #         #                        #"))
     display.append(["#"] * 76)
+
+    atack_board = [list(i) for i in atack_board.split("\n")]
     # game loop
+    game_state = 2
     while True:
-        print3D(1, 1, display)
-        printMmap(1, 54, display)
-        printText(29, 1, display)
-        printInv(31, 1, display)
-        fprint(display)
-        move()
+        if game_state == 1:
+            print3D(1, 1, display)
+            printMmap(1, 54, display)
+            printText(29, 1, display)
+            printInv(31, 1, display)
+            fprint(display)
+            move()
+        elif game_state == 2:
+            acheck()
+            aprintEnemyName(9, 43, atack_board)
+            aprintEnemy(11, 42, atack_board)
+            printText(29, 1, atack_board)
+            printInv(31, 1, atack_board)
+            fprint(atack_board)
+            amove()

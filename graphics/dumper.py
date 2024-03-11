@@ -28,19 +28,19 @@ def create_lines(data):
 # inpp = input("Имя исходного: ")
 # outt = input("Имя выходного: ")
 
-import os
-for root, dirs, files in os.walk("./graphics"):
-    for filename in files:
-        if filename[-4:] == '.txt':
-            print(filename, end=' ')
-            with open("graphics/" + filename, "r") as inp:
-                with open("graphics/" + filename[:-4], "w") as out:
-                    data = "\0" + inp.read()
-                    res = create_lines(data)
-                    out.writelines(res)
+# import os
+# for root, dirs, files in os.walk("./graphics"):
+#     for filename in files:
+#         if filename[-4:] == '.txt':
+#             print(filename, end=' ')
+#             with open("graphics/" + filename, "r") as inp:
+#                 with open("graphics/" + filename[:-4], "w") as out:
+#                     data = "\0" + inp.read()
+#                     res = create_lines(data)
+#                     out.writelines(res)
 
-# with open("graphics/" + "test_map.txt", "r") as inp:
-#     with open("graphics/" + "test_map", "w") as out:
-#         data = "\0" + chr(3) + chr(2) + chr(2) + inp.read()
-#         res = create_lines(data)
-#         out.writelines(res)
+with open("graphics/" + "test_map.txt", "r") as inp:
+    with open("graphics/" + "test_map", "w") as out:
+        data = "\0" + chr(3) + chr(2) + chr(2) + inp.read()
+        res = create_lines(data)
+        out.writelines(res)
