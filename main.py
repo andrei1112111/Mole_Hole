@@ -1,6 +1,7 @@
 #   ---CAAL2O4--- engine
 from graphics import *
 from random import choice
+from copy import copy
 
 
 def rand1_1():
@@ -13,7 +14,8 @@ texts = {0: "                                                                   
          2: "    ВЫ НАНЕСЛИ                         ЕДИНИЦ УРОНА. ОН УДАРИЛ В ОТВЕТ    ",
          3: "           ВЫ ПОБЕДИЛИ ПРОТИВНИКА                      !                  ",
          4: "                  ВАС АТАКОВАЛ ВРАГ                      !                ",
-         5: "  ВЫ НАШЛИ СУНДУК. В НЕМ ЛЕЖИТ                      . В КАКОЙ СЛОТ ВЗЯТЬ? "
+         5: "  ВЫ НАШЛИ СУНДУК. В НЕМ ЛЕЖИТ                      . В КАКОЙ СЛОТ ВЗЯТЬ? ",
+         6: "                 ВЫ НЕДОСТАТОЧНО ГОЛОДНЫ ЧТОБЫ ЕСТЬ ЭТО                   "
          }  # количество букв строго четно. число - отступ
 directed_mole = {1: list(MDU.split('\n')[1:-1]),
                  2: list(MDR.split('\n')[1:-1]),
@@ -22,14 +24,15 @@ directed_mole = {1: list(MDU.split('\n')[1:-1]),
 
 atcRat = [list(i) for i in atcRat.split("\n")]
 
-INVENTORY = [1, 0, 0, 0, 0]
-ITEMS = {1: DEFAULT_STICK, 2: sharpened_bone}
-ITEMSnames = ["", "   ОБЫЧНАЯ ПАЛКА    ", "  ОБТОЧЕННАЯ КОСТЬ  "]
-ITEMSdmg = {1: 3, 2: 5}
+INVENTORY = [6, 0, 0, 0, 0]
+ITEMS = {6: DEFAULT_STICK, 7: sharpened_bone, 1: BUG_EAT}
+ITEMSnames = ["","    СЪЕДОБНЫЙ ЖУК   ","                    ","                    ",
+              "                    ","                    ", "   ОБЫЧНАЯ ПАЛКА    ", "  ОБТОЧЕННАЯ КОСТЬ  "]
+ITEMSdmg = {1: 2, 6: 3, 7: 5}
 ENEMYES = {
     1: ["   Страшная крыса   ", 5, atcRat, 1]
 }
-ENEMYcurrent = 0
+ENEMYcurrent = []
 dmgCurrent = 0
 
 CURRENT_TEXT = 0
@@ -161,8 +164,9 @@ def printText(y, x, display):
         display[y][x + i] = texts[CURRENT_TEXT][i]
     if CURRENT_TEXT == 3:
         for i in range(20):
-            display[y][x + i + 34] = ENEMYES[ENEMYcurrent][0][i]
+            display[y][x + i + 34] = ENEMYcurrent[0][i]
     if CURRENT_TEXT == 5:
+        print(ord(card[player_cods[0]][player_cods[1]]) - ord('a'))
         for i in range(20):
             display[y][x + i + 31] = ITEMSnames[ord(card[player_cods[0]][player_cods[1]]) - ord('a') + 1][i]
 
@@ -186,6 +190,10 @@ def printInv(y, x, display):
             for yy in range(4):
                 for xx in range(9):
                     display[y+yy][x+(k*10)+xx] = item[yy][xx]
+        else:
+            for yy in range(4):
+                for xx in range(9):
+                    display[y+yy][x+(k*10)+xx] = ' '
 
 
 def printMmap(y, x, display):
@@ -208,7 +216,7 @@ def printMmap(y, x, display):
 
 
 def move():
-    global player_direct, CURRENT_TEXT, game_state, ENEMYcurrent
+    global player_direct, CURRENT_TEXT, game_state, ENEMYcurrent, CURRENT_HP, INVENTORY
     CURRENT_TEXT = 0
     inp = input("Type: (W, A, D, Q, 1-5 item number)")
     if inp == 'a':
@@ -235,12 +243,21 @@ def move():
                 a = INVENTORY[int(inp) - 1]
                 INVENTORY[int(inp) - 1] = ord(card[player_cods[0]][player_cods[1]]) - ord('a') + 1
                 card[player_cods[0]][player_cods[1]] = chr(a + ord('a') - 1)
-        if INVENTORY[int(inp)-1] == 1:
-            CURRENT_TEXT = 1
+        else:
+            if INVENTORY[int(inp)-1] >= 6:
+                CURRENT_TEXT = 1
+            elif INVENTORY[int(inp)-1] != 0:
+                print(INVENTORY[int(inp)-1])
+                if CURRENT_HP + ITEMSdmg[INVENTORY[int(inp)-1]] <= 10:
+                    CURRENT_HP += ITEMSdmg[INVENTORY[int(inp)-1]]
+                    INVENTORY[int(inp) - 1] = 0
+                else:
+                    CURRENT_TEXT = 6
     if '0' <= card[player_cods[0]][player_cods[1]] <= '9':
         game_state = 2
         CURRENT_TEXT = 4
-        ENEMYcurrent = int(card[player_cods[0]][player_cods[1]])
+        ENEMYcurrent = copy(ENEMYES[int(card[player_cods[0]][player_cods[1]])])
+
     if 'a' <= card[player_cods[0]][player_cods[1]] <= 'z':
         CURRENT_TEXT = 5
 
@@ -254,35 +271,39 @@ def fprint(display):
 def aprintEnemy(y, x, aboard):
     for yy in range(8):
         for xx in range(22):
-            aboard[y+yy][x+xx] = ENEMYES[ENEMYcurrent][2][yy][xx]
+            aboard[y+yy][x+xx] = ENEMYcurrent[2][yy][xx]
 
 
 def aprintEnemyName(y, x, aboard):
     for i in range(20):
-        aboard[y][x + i] = ENEMYES[ENEMYcurrent][0][i]
-    if ENEMYES[ENEMYcurrent][1] == 10:
+        aboard[y][x + i] = ENEMYcurrent[0][i]
+    if ENEMYcurrent[1] == 10:
         aboard[y][x + 23] = '1'
         aboard[y][x + 24] = '0'
     else:
         aboard[y][x + 23] = ' '
-        aboard[y][x + 24] = str(ENEMYES[ENEMYcurrent][1])
+        aboard[y][x + 24] = str(ENEMYcurrent[1])
 
 
 def amove():
-    global CURRENT_TEXT, dmgCurrent
+    global CURRENT_TEXT, dmgCurrent, CURRENT_HP
     inp = input("Type 1-5 item number to use it")
     if inp == 'q':
         exit(0)
     elif '1' <= inp <= '5':
         if INVENTORY[int(inp)-1] != 0:
-            dmgCurrent = (ITEMSdmg[1] + rand1_1())
-            ENEMYES[ENEMYcurrent][1] -= dmgCurrent
-            CURRENT_TEXT = 2
+            if 0 < INVENTORY[int(inp)-1] <= 5:
+                CURRENT_HP += ITEMSdmg[INVENTORY[int(inp)-1]]
+                INVENTORY[int(inp) - 1] = 0
+            else:
+                dmgCurrent = (ITEMSdmg[INVENTORY[int(inp)-1]] + rand1_1())
+                ENEMYcurrent[1] -= dmgCurrent
+                CURRENT_TEXT = 2
 
 
 def acheck():
     global game_state, CURRENT_TEXT, card
-    if ENEMYES[ENEMYcurrent][1] <= 0:
+    if ENEMYcurrent[1] <= 0:
         game_state = 1
         CURRENT_TEXT = 3
         card[player_cods[0]][player_cods[1]] = " "
@@ -294,19 +315,19 @@ def aprintText(y, x, display):
         display[y][x + i] = texts[CURRENT_TEXT][i]
     if CURRENT_TEXT == 3:
         for i in range(20):
-            display[y][x + i + 34] = ENEMYES[ENEMYcurrent][0][i]
+            display[y][x + i + 34] = ENEMYcurrent[0][i]
     if CURRENT_TEXT == 4:
         for i in range(20):
-            display[y][x + i + 36] = ENEMYES[ENEMYcurrent][0][i]
+            display[y][x + i + 36] = ENEMYcurrent[0][i]
     if CURRENT_TEXT == 2:
         for i in range(20):
-            display[y][x + i + 15] = ENEMYES[ENEMYcurrent][0][i]
+            display[y][x + i + 15] = ENEMYcurrent[0][i]
         display[y][x + 36] = str(dmgCurrent)
 
 
 def enemyMove():
     global CURRENT_HP
-    CURRENT_HP -= (ENEMYES[ENEMYcurrent][3] + rand1_1())
+    CURRENT_HP -= (ENEMYcurrent[3] + rand1_1())
 
 
 def death_screen():
