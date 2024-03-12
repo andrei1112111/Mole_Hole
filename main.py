@@ -26,8 +26,8 @@ atcRat = [list(i) for i in atcRat.split("\n")]
 
 INVENTORY = [6, 0, 0, 0, 0]
 ITEMS = {6: DEFAULT_STICK, 7: sharpened_bone, 1: BUG_EAT}
-ITEMSnames = ["","    СЪЕДОБНЫЙ ЖУК   ","                    ","                    ",
-              "                    ","                    ", "   ОБЫЧНАЯ ПАЛКА    ", "  ОБТОЧЕННАЯ КОСТЬ  "]
+ITEMSnames = ["", "    СЪЕДОБНЫЙ ЖУК   ", "                    ", "                    ",
+              "                    ", "                    ", "   ОБЫЧНАЯ ПАЛКА    ", "  ОБТОЧЕННАЯ КОСТЬ  "]
 ITEMSdmg = {1: 2, 6: 3, 7: 5}
 ENEMYES = {
     1: ["   Страшная крыса   ", 5, atcRat, 1]
@@ -95,14 +95,17 @@ def print3D(y, x, display):
             to_print.append(LFFFl)
         # front front left/right
         if not (FFl in to_print or FFFl in to_print):
-            if card[player_cods[0] + 2 * direction[player_direct][0]][player_cods[1] - direction[player_direct][0]] == '#':
+            if card[player_cods[0] + 2 * direction[player_direct][0]][
+                player_cods[1] - direction[player_direct][0]] == '#':
                 to_print.append(FFRFl)
             if card[player_cods[0] + 2 * direction[player_direct][0]][
                 player_cods[1] + direction[player_direct][0]] == '#':
                 to_print.append(FFLFl)
-        if card[player_cods[0] + 3 * direction[player_direct][0]][player_cods[1] + direction[player_direct][0]] == '#' and not (FFLFl in to_print):
+        if card[player_cods[0] + 3 * direction[player_direct][0]][
+            player_cods[1] + direction[player_direct][0]] == '#' and not (FFLFl in to_print):
             to_print.append(LFFFFl)
-        if card[player_cods[0] + 3 * direction[player_direct][0]][player_cods[1] - direction[player_direct][0]] == '#' and not (FFRFl in to_print):
+        if card[player_cods[0] + 3 * direction[player_direct][0]][
+            player_cods[1] - direction[player_direct][0]] == '#' and not (FFRFl in to_print):
             to_print.append(RFFFFl)
 
     if player_direct in [2, 4]:
@@ -138,14 +141,17 @@ def print3D(y, x, display):
             to_print.append(LFFFl)
         # front front left/right
         if not (FFl in to_print or FFFl in to_print):
-            if card[player_cods[0] + direction[player_direct][1]][player_cods[1] + 2 * direction[player_direct][1]] == '#':
+            if card[player_cods[0] + direction[player_direct][1]][
+                player_cods[1] + 2 * direction[player_direct][1]] == '#':
                 to_print.append(FFRFl)
             if card[player_cods[0] - direction[player_direct][1]][
                 player_cods[1] + 2 * direction[player_direct][1]] == '#':
                 to_print.append(FFLFl)
-        if card[player_cods[0] + direction[player_direct][1]][player_cods[1] + 3 * direction[player_direct][1]] == '#' and not (FFRFl in to_print):
+        if card[player_cods[0] + direction[player_direct][1]][
+            player_cods[1] + 3 * direction[player_direct][1]] == '#' and not (FFRFl in to_print):
             to_print.append(RFFFFl)
-        if card[player_cods[0] - direction[player_direct][1]][player_cods[1] + 3 * direction[player_direct][1]] == '#' and not (FFLFl in to_print):
+        if card[player_cods[0] - direction[player_direct][1]][
+            player_cods[1] + 3 * direction[player_direct][1]] == '#' and not (FFLFl in to_print):
             to_print.append(LFFFFl)
 
     for yy, j in enumerate(nothing.split("\n")[1:-1]):
@@ -174,9 +180,9 @@ def printText(y, x, display):
 def printInv(y, x, display):
     # PRINT BARS
     for i in range(0, CURRENT_HP):
-        display[y][x+55+i] = '#'
+        display[y][x + 55 + i] = '#'
     for i in range(CURRENT_HP, 9):
-        display[y][x+55+i] = ' '
+        display[y][x + 55 + i] = ' '
     if CURRENT_HP == 10:
         display[y][x + 67] = '1'
         display[y][x + 68] = '0'
@@ -189,11 +195,11 @@ def printInv(y, x, display):
             item = list(ITEMS[item].split('\n')[1:-1])
             for yy in range(4):
                 for xx in range(9):
-                    display[y+yy][x+(k*10)+xx] = item[yy][xx]
+                    display[y + yy][x + (k * 10) + xx] = item[yy][xx]
         else:
             for yy in range(4):
                 for xx in range(9):
-                    display[y+yy][x+(k*10)+xx] = ' '
+                    display[y + yy][x + (k * 10) + xx] = ' '
 
 
 def printMmap(y, x, display):
@@ -209,7 +215,7 @@ def printMmap(y, x, display):
         for j in range(0, 20, 3):
             for xx in range(3):
                 for yy in range(3):
-                    display[y + i + yy][x + j + xx] = miniMap[i//3][j//3]
+                    display[y + i + yy][x + j + xx] = miniMap[i // 3][j // 3]
     for xx in range(3):
         for yy in range(3):
             display[y + 9 + yy][x + 9 + xx] = directed_mole[player_direct][yy][xx]
@@ -236,7 +242,7 @@ def move():
         exit(0)
     elif '1' <= inp <= '5':
         if 'a' <= card[player_cods[0]][player_cods[1]] <= 'z':
-            if INVENTORY[int(inp)-1] == 0:
+            if INVENTORY[int(inp) - 1] == 0:
                 INVENTORY[int(inp) - 1] = ord(card[player_cods[0]][player_cods[1]]) - ord('a') + 1
                 card[player_cods[0]][player_cods[1]] = ' '
             else:
@@ -244,12 +250,12 @@ def move():
                 INVENTORY[int(inp) - 1] = ord(card[player_cods[0]][player_cods[1]]) - ord('a') + 1
                 card[player_cods[0]][player_cods[1]] = chr(a + ord('a') - 1)
         else:
-            if INVENTORY[int(inp)-1] >= 6:
+            if INVENTORY[int(inp) - 1] >= 6:
                 CURRENT_TEXT = 1
-            elif INVENTORY[int(inp)-1] != 0:
-                print(INVENTORY[int(inp)-1])
-                if CURRENT_HP + ITEMSdmg[INVENTORY[int(inp)-1]] <= 10:
-                    CURRENT_HP += ITEMSdmg[INVENTORY[int(inp)-1]]
+            elif INVENTORY[int(inp) - 1] != 0:
+                print(INVENTORY[int(inp) - 1])
+                if CURRENT_HP + ITEMSdmg[INVENTORY[int(inp) - 1]] <= 10:
+                    CURRENT_HP += ITEMSdmg[INVENTORY[int(inp) - 1]]
                     INVENTORY[int(inp) - 1] = 0
                 else:
                     CURRENT_TEXT = 6
@@ -261,6 +267,7 @@ def move():
     if 'a' <= card[player_cods[0]][player_cods[1]] <= 'z':
         CURRENT_TEXT = 5
 
+
 def fprint(display):
     for i in display:
         for j in i:
@@ -271,7 +278,7 @@ def fprint(display):
 def aprintEnemy(y, x, aboard):
     for yy in range(8):
         for xx in range(22):
-            aboard[y+yy][x+xx] = ENEMYcurrent[2][yy][xx]
+            aboard[y + yy][x + xx] = ENEMYcurrent[2][yy][xx]
 
 
 def aprintEnemyName(y, x, aboard):
@@ -291,12 +298,12 @@ def amove():
     if inp == 'q':
         exit(0)
     elif '1' <= inp <= '5':
-        if INVENTORY[int(inp)-1] != 0:
-            if 0 < INVENTORY[int(inp)-1] <= 5:
-                CURRENT_HP += ITEMSdmg[INVENTORY[int(inp)-1]]
+        if INVENTORY[int(inp) - 1] != 0:
+            if 0 < INVENTORY[int(inp) - 1] <= 5:
+                CURRENT_HP += ITEMSdmg[INVENTORY[int(inp) - 1]]
                 INVENTORY[int(inp) - 1] = 0
             else:
-                dmgCurrent = (ITEMSdmg[INVENTORY[int(inp)-1]] + rand1_1())
+                dmgCurrent = (ITEMSdmg[INVENTORY[int(inp) - 1]] + rand1_1())
                 ENEMYcurrent[1] -= dmgCurrent
                 CURRENT_TEXT = 2
 
