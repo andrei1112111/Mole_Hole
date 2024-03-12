@@ -95,11 +95,11 @@ def print3D(y, x, display):
             to_print.append(LFFFl)
         # front front left/right
         if not (FFl in to_print or FFFl in to_print):
-            if card[player_cods[0] + 2 * direction[player_direct][0]][
-                player_cods[1] - direction[player_direct][0]] == '#':
+            if card[player_cods[0] + 2 * direction[player_direct][0]][ \
+                    player_cods[1] - direction[player_direct][0]] == '#':
                 to_print.append(FFRFl)
-            if card[player_cods[0] + 2 * direction[player_direct][0]][
-                player_cods[1] + direction[player_direct][0]] == '#':
+            if card[player_cods[0] + 2 * direction[player_direct][0]][ \
+                    player_cods[1] + direction[player_direct][0]] == '#':
                 to_print.append(FFLFl)
         if card[player_cods[0] + 3 * direction[player_direct][0]][
             player_cods[1] + direction[player_direct][0]] == '#' and not (FFLFl in to_print):
@@ -253,7 +253,6 @@ def move():
             if INVENTORY[int(inp) - 1] >= 6:
                 CURRENT_TEXT = 1
             elif INVENTORY[int(inp) - 1] != 0:
-                print(INVENTORY[int(inp) - 1])
                 if CURRENT_HP + ITEMSdmg[INVENTORY[int(inp) - 1]] <= 10:
                     CURRENT_HP += ITEMSdmg[INVENTORY[int(inp) - 1]]
                     INVENTORY[int(inp) - 1] = 0
@@ -300,8 +299,9 @@ def amove():
     elif '1' <= inp <= '5':
         if INVENTORY[int(inp) - 1] != 0:
             if 0 < INVENTORY[int(inp) - 1] <= 5:
-                CURRENT_HP += ITEMSdmg[INVENTORY[int(inp) - 1]]
-                INVENTORY[int(inp) - 1] = 0
+                if CURRENT_HP + ITEMSdmg[INVENTORY[int(inp) - 1]] <= 10:
+                    CURRENT_HP += ITEMSdmg[INVENTORY[int(inp) - 1]]
+                    INVENTORY[int(inp) - 1] = 0
             else:
                 dmgCurrent = (ITEMSdmg[INVENTORY[int(inp) - 1]] + rand1_1())
                 ENEMYcurrent[1] -= dmgCurrent
@@ -376,9 +376,9 @@ if __name__ == "__main__":
             aprintText(29, 1, atack_board)
             printInv(31, 1, atack_board)
             acheck()
-            if game_state == 1:
-                continue
             if CURRENT_HP <= 0:
                 death_screen()
+            if game_state == 1:
+                continue
             fprint(atack_board)
             amove()
