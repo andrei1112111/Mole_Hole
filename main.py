@@ -28,15 +28,15 @@ INVENTORY = [6, 0, 0, 0, 0]
 ITEMS = {6: DEFAULT_STICK, 7: sharpened_bone, 1: BUG_EAT}
 ITEMSnames = ["", "    СЪЕДОБНЫЙ ЖУК   ", "                    ", "                    ",
               "                    ", "                    ", "   ОБЫЧНАЯ ПАЛКА    ", "  ОБТОЧЕННАЯ КОСТЬ  "]
-ITEMSdmg = {1: 2, 6: 3, 7: 5}
+ITEMSdmg = {1: 12, 6: 10, 7: 20}
 ENEMYES = {
-    1: ["   Страшная крыса   ", 5, atcRat, 1]
+    1: ["   Страшная крыса   ", 20, atcRat, 5]
 }
 ENEMYcurrent = []
 dmgCurrent = 0
 
 CURRENT_TEXT = 0
-CURRENT_HP = 10
+CURRENT_HP = 50
 CURRENT_ST = 0
 CURRENT_HG = 1
 
@@ -179,13 +179,14 @@ def printText(y, x, display):
 
 def printInv(y, x, display):
     # PRINT BARS
-    for i in range(0, CURRENT_HP):
+    for i in range(0, CURRENT_HP//5):
         display[y][x + 55 + i] = '#'
-    for i in range(CURRENT_HP, 9):
+    for i in range(CURRENT_HP//5, 9):
         display[y][x + 55 + i] = ' '
-    if CURRENT_HP == 10:
-        display[y][x + 67] = '1'
-        display[y][x + 68] = '0'
+    if CURRENT_HP >= 10:
+        a = list(str(CURRENT_HP))
+        display[y][x + 67] = a[0]
+        display[y][x + 68] = a[1]
     else:
         display[y][x + 67] = ' '
         display[y][x + 68] = str(CURRENT_HP)
@@ -253,7 +254,7 @@ def move():
             if INVENTORY[int(inp) - 1] >= 6:
                 CURRENT_TEXT = 1
             elif INVENTORY[int(inp) - 1] != 0:
-                if CURRENT_HP + ITEMSdmg[INVENTORY[int(inp) - 1]] <= 10:
+                if CURRENT_HP + ITEMSdmg[INVENTORY[int(inp) - 1]] <= 50:
                     CURRENT_HP += ITEMSdmg[INVENTORY[int(inp) - 1]]
                     INVENTORY[int(inp) - 1] = 0
                 else:
@@ -299,7 +300,7 @@ def amove():
     elif '1' <= inp <= '5':
         if INVENTORY[int(inp) - 1] != 0:
             if 0 < INVENTORY[int(inp) - 1] <= 5:
-                if CURRENT_HP + ITEMSdmg[INVENTORY[int(inp) - 1]] <= 10:
+                if CURRENT_HP + ITEMSdmg[INVENTORY[int(inp) - 1]] <= 50:
                     CURRENT_HP += ITEMSdmg[INVENTORY[int(inp) - 1]]
                     INVENTORY[int(inp) - 1] = 0
             else:
@@ -353,7 +354,7 @@ if __name__ == "__main__":
     display.append(["#"] * 76)
     display.append(["#"] + [" "] * 74 + ["#"])
     display.append(["#"] * 76)
-    display.append(list("#         #         #         #         #         # HP |          |(  /10) #"))
+    display.append(list("#         #         #         #         #         # HP |          |(  /50) #"))
     display.append(list("#         #         #         #         #         #                        #"))
     display.append(list("#         #         #         #         #         #                        #"))
     display.append(list("#         #         #         #         #         #                        #"))
