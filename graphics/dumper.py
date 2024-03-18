@@ -1,10 +1,10 @@
 def create_lines(data):
-    dataa = []
-    for i in data.split('\n'):
-        while len(i) < 52:
-            i += " "
-        dataa.append(i)
-    data = '\n'.join(dataa)
+    # dataa = []
+    # for i in data.split('\n'):
+    #     while len(i) < 52:
+    #         i += " "
+    #     dataa.append(i)
+    # data = '\n'.join(dataa)
     k = 0
     с = 0
     line = []
