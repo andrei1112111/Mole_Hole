@@ -10,6 +10,8 @@ def create_lines(data):
     line = []
     lines = ["v2.0 raw\n"]
     for i in data:
+        if i == "\n":
+            continue
         if k == 15:
             k = 0
             с += len(line)
