@@ -39,8 +39,8 @@ def create_lines(data):
 #                     res = create_lines(data)
 #                     out.writelines(res)
 
-with open("graphics/" + "test_map.txt", "r") as inp:
-    with open("graphics/" + "test_map", "w") as out:
-        data = "\0" + chr(3) + chr(2) + chr(2) + inp.read()
+with open("test_map.txt", "r") as inp:
+    with open("test_map", "w") as out:
+        data = inp.read()
         res = create_lines(data)
         out.writelines(res)
