@@ -16,7 +16,7 @@ f - (5  dmg) DEFAULT_STICK
 g - (20 dmg) sharpened_bone
 h - (15 dmg) OLD_CLAW
 i - (10 dmg) bone_cudgel
-g - (99 dmg) BFG9000
+j - (99 dmg) BFG9000
 _______________________________ ENEMIES
 1 - RAT     20hp  5dmg
 2 - MOUSE   10hp  3dmg
@@ -45,7 +45,10 @@ directed_mole = {1: list(MDU.split('\n')[1:-1]),
                  4: list(MDL.split('\n')[1:-1])}
 
 atcRat = [list(i) for i in atcRat.split("\n")]
-
+atcMouse = [list(i) for i in atcMouse.split("\n")]
+atcFerret = [list(i) for i in atcFerret.split("\n")]
+atcSnake = [list(i) for i in atcSnake.split("\n")]
+ENEMYcurrent = []
 enemy_skip_move = 0
 INVENTORY = [6, 0, 0, 0, 0]
 ITEMS = {6: DEFAULT_STICK, 7: sharpened_bone, 8: OLD_CLAW, 9: bone_cudgel, 10: BFG9000,
@@ -61,7 +64,6 @@ ENEMIES = {
     3: ["    Милый хорек     ", 50, atcFerret, 20],
     4: ["   Маленьякая змея  ", 30, atcSnake, 10]
 }
-ENEMYcurrent = []
 dmgCurrent = 0
 
 CURRENT_TEXT = 7
@@ -70,7 +72,7 @@ CURRENT_ST = 0
 CURRENT_HG = 1
 
 # парсинг карты
-cardd = open("map.txt").read().split('\n')
+cardd = open("graphics/level1.txt").read().split('\n')
 width, height = len(cardd[0]), len(cardd)
 player_cods = [0, 0]
 direction = {3: (1, 0), 1: (-1, 0), 4: (0, -1), 2: (0, 1)}
@@ -88,10 +90,26 @@ for y, i in enumerate(cardd):
             player_cods = [y, x]
             card[y][x] = " "
 
+enemies_textures = [mouse_ratFFFl, mouse_ratFFFl, ferretFFFl, snakeFFFl]
+
 
 def print3D(y, x, display):
     to_print = []
     if player_direct in [1, 3]:
+        if card[player_cods[0] + direction[player_direct][0]][player_cods[1]] in "abcdfghi1234":
+            if card[player_cods[0] + direction[player_direct][0]][player_cods[1]] in "fghi":
+                to_print.append(item_weaponFFl)
+            else:
+                to_print.append(itemFFl)
+        elif card[player_cods[0] + 2 * direction[player_direct][0]][player_cods[1]] in "abcd":
+            to_print.append(itemFFl)
+        elif card[player_cods[0] + 3 * direction[player_direct][0]][player_cods[1]] in "abcd":
+            to_print.append(itemFFFl)
+        elif card[player_cods[0] + 3 * direction[player_direct][0]][player_cods[1]] in "1234":
+            to_print.append(enemyFFFFl)
+        elif card[player_cods[0] + 2 * direction[player_direct][0]][player_cods[1]] in "1234":
+            to_print.append(enemies_textures[int(card[player_cods[0] + 2 * direction[player_direct][0]][player_cods[1]])-1])
+        #
         if card[player_cods[0] + direction[player_direct][0]][player_cods[1]] == '#':
             to_print.append(FFl)
         elif card[player_cods[0] + 2 * direction[player_direct][0]][player_cods[1]] == '#':
@@ -138,6 +156,20 @@ def print3D(y, x, display):
             to_print.append(RFFFFl)
 
     if player_direct in [2, 4]:
+        if card[player_cods[0]][player_cods[1] + direction[player_direct][1]] in "abcdfghi1234":
+            if card[player_cods[0]][player_cods[1] + direction[player_direct][1]] in "fghi":
+                to_print.append(item_weaponFFl)
+            else:
+                to_print.append(itemFFl)
+        elif card[player_cods[0]][player_cods[1] + 2 * direction[player_direct][1]] in "abcd":
+            to_print.append(itemFFFl)
+        elif card[player_cods[0]][player_cods[1] + 3 * direction[player_direct][1]] in "abcd":
+            to_print.append(itemFFFFl)
+        elif card[player_cods[0]][player_cods[1] + 3 * direction[player_direct][1]] in "1234":
+            to_print.append(enemyFFFFl)
+        elif card[player_cods[0]][player_cods[1] + 2 * direction[player_direct][1]] in "1234":
+            to_print.append(enemies_textures[int(card[player_cods[0]][player_cods[1] + 2 * direction[player_direct][1]])-1])
+        #
         if card[player_cods[0]][player_cods[1] + direction[player_direct][1]] == '#':
             to_print.append(FFl)
         elif card[player_cods[0]][player_cods[1] + 2 * direction[player_direct][1]] == '#':
@@ -288,11 +320,16 @@ def move():
                     INVENTORY[int(inp) - 1] = 0
                 else:
                     CURRENT_TEXT = 6
-    if '0' <= card[player_cods[0]][player_cods[1]] <= '9':
-        game_state = 2
-        CURRENT_TEXT = 4
-        ENEMYcurrent = copy(ENEMIES[int(card[player_cods[0]][player_cods[1]])])
-
+    if player_direct in [2, 4]:
+        if '0' <= card[player_cods[0]][player_cods[1] + direction[player_direct][1]] <= '9':
+            game_state = 2
+            CURRENT_TEXT = 4
+            ENEMYcurrent = copy(ENEMIES[int(card[player_cods[0]][player_cods[1] + direction[player_direct][1]])])
+    if player_direct in [1, 3]:
+        if '0' <= card[player_cods[0] + direction[player_direct][0]][player_cods[1]] <= '9':
+            game_state = 2
+            CURRENT_TEXT = 4
+            ENEMYcurrent = copy(ENEMIES[int(card[player_cods[0] + direction[player_direct][0]][player_cods[1]])])
     if 'a' <= card[player_cods[0]][player_cods[1]] <= 'z':
         CURRENT_TEXT = 5
 
@@ -305,6 +342,7 @@ def fprint(display):
 
 
 def aprintEnemy(y, x, aboard):
+    a = ENEMYcurrent
     for yy in range(8):
         for xx in range(22):
             aboard[y + yy][x + xx] = ENEMYcurrent[2][yy][xx]
@@ -344,7 +382,10 @@ def acheck():
     if ENEMYcurrent[1] <= 0:
         game_state = 1
         CURRENT_TEXT = 3
-        card[player_cods[0]][player_cods[1]] = " "
+        if player_direct in [2, 4]:
+            card[player_cods[0]][player_cods[1] + direction[player_direct][1]] = " "
+        if player_direct in [1, 3]:
+            card[player_cods[0] + direction[player_direct][0]][player_cods[1]] = " "
 
 
 def aprintText(y, x, display):
