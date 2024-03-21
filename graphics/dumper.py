@@ -1,10 +1,10 @@
 def create_lines(data):
-    # dataa = []
-    # for i in data.split('\n'):
-    #     while len(i) < 52:
-    #         i += " "
-    #     dataa.append(i)
-    # data = '\n'.join(dataa)
+    dataa = []
+    for i in data.split('\n'):
+        while len(i) < 22:
+            i += " "
+        dataa.append(i)
+    data = '\n'.join(dataa)
     k = 0
     с = 0
     line = []
@@ -43,8 +43,14 @@ def create_lines(data):
 #                     res = create_lines(data)
 #                     out.writelines(res)
 
-with open("graphics/" + "test_map.txt", "r") as inp:
-    with open("graphics/" + "test_map", "w") as out:
-        data = "\0" + chr(4) + chr(3) + chr(2) + inp.read()
+# with open("graphics/" + "test_map.txt", "r") as inp:
+#     with open("graphics/" + "test_map", "w") as out:
+#         data = "\0" + chr(4) + chr(3) + chr(2) + inp.read()
+#         res = create_lines(data)
+#         out.writelines(res)
+
+with open("graphics/" + "atcRat.txt", "r") as inp:
+    with open("graphics/" + "atcRat", "w") as out:
+        data = inp.read()
         res = create_lines(data)
         out.writelines(res)
