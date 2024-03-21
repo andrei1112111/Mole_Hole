@@ -59,10 +59,10 @@ ITEMSnames = ["none                ", "    СЪЕДОБНЫЙ ЖУК   ", "   С
 ITEMSdmg = {1: 10, 2: 6, 3: 15, 4: 20,
             6: 5, 7: 20, 8: 15, 9: 10, 10: 99}
 ENEMIES = {
-    1: ["   Страшная крыса   ", 20, atcRat, 5],
-    2: ["      Злая мышь     ", 10, atcMouse, 3],
-    3: ["    Милый хорек     ", 50, atcFerret, 20],
-    4: ["   Маленьякая змея  ", 30, atcSnake, 10]
+    1: ["      SCARY RAT     ", 20, atcRat, 5],
+    2: ["     EVIL MOUSE     ", 10, atcMouse, 3],
+    3: ["    CUTE FERRET     ", 50, atcFerret, 20],
+    4: ["    LITTLE SNAKE    ", 30, atcSnake, 10]
 }
 dmgCurrent = 0
 
