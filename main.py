@@ -50,7 +50,7 @@ atcFerret = [list(i) for i in atcFerret.split("\n")]
 atcSnake = [list(i) for i in atcSnake.split("\n")]
 ENEMYcurrent = []
 enemy_skip_move = 0
-INVENTORY = [6, 0, 0, 0, 0]
+INVENTORY = [0, 0, 0, 0, 0]
 ITEMS = {6: DEFAULT_STICK, 7: sharpened_bone, 8: OLD_CLAW, 9: bone_cudgel, 10: BFG9000,
          1: BUG_EAT, 2: SPIDER_EAT, 3: CENTIPEDE_EAT, 4: WORM_EAT}
 ITEMSnames = ["none                ", "    СЪЕДОБНЫЙ ЖУК   ", "   СЪЕДОБНЫЙ ПАУК   ", "СЪЕДОБНАЯ МНОГОНОЖКА",
