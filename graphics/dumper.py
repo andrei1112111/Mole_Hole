@@ -1,15 +1,19 @@
 def create_lines(data):
     # dataa = []
     # for i in data.split('\n'):
-    #     while len(i) < 52:
-    #         i += " "
-    #     dataa.append(i)
+        # while len(i) < 20:
+        #     i += " "
+        # dataa.append(i)
     # data = '\n'.join(dataa)
     k = 0
     с = 0
     line = []
     lines = ["v2.0 raw\n"]
     for i in data:
+        if i == 'P':
+            i = ' '
+        if i == "\n":
+            continue
         if k == 15:
             k = 0
             с += len(line)
@@ -42,5 +46,9 @@ def create_lines(data):
 with open("test_map.txt", "r") as inp:
     with open("test_map", "w") as out:
         data = inp.read()
-        res = create_lines(data)
-        out.writelines(res)
+
+# with open("graphics/texts/" + "ferretName.txt", "r") as inp:
+#     with open("graphics/texts/" + "ferretName", "w") as out:
+#         data = inp.read()
+#         res = create_lines(data)
+#         out.writelines(res)
