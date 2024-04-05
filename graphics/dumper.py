@@ -49,14 +49,14 @@ def create_lines(data):
 #         res = create_lines(data)
 #         out.writelines(res)
 
-# with open("graphics/texts/" + "ferretName.txt", "r") as inp:
-#     with open("graphics/texts/" + "ferretName", "w") as out:
-#         data = inp.read()
-#         res = create_lines(data)
-#         out.writelines(res)
-
-with open("graphics/" + "atackBoard.txt", "r") as inp:
-    with open("graphics/" + "atackBoard", "w") as out:
-        data = "\0" + inp.read()
+with open("graphics/texts/items/" + "centipede.txt", "r") as inp:
+    with open("graphics/texts/items/" + "centipede", "w") as out:
+        data = inp.read()
         res = create_lines(data)
         out.writelines(res)
+
+# with open("graphics/" + "atackBoard.txt", "r") as inp:
+#     with open("graphics/" + "atackBoard", "w") as out:
+#         data = "\0" + inp.read()
+#         res = create_lines(data)
+#         out.writelines(res)
