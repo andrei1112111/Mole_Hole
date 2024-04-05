@@ -49,8 +49,8 @@ def create_lines(data):
 #         res = create_lines(data)
 #         out.writelines(res)
 
-with open("graphics/texts/items/" + "centipede.txt", "r") as inp:
-    with open("graphics/texts/items/" + "centipede", "w") as out:
+with open("graphics/texts/" + "presstoc.txt", "r") as inp:
+    with open("graphics/texts/" + "presstoc", "w") as out:
         data = inp.read()
         res = create_lines(data)
         out.writelines(res)
