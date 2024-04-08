@@ -10,10 +10,10 @@ def create_lines(data):
     line = []
     lines = ["v2.0 raw\n"]
     for i in data:
-        # if i == 'P':
-        #     i = ' '
-        # if i == "\n":
-        #     continue
+        if i == 'P':
+            i = ' '
+        if i == "\n":
+            continue
         if k == 15:
             k = 0
             с += len(line)
@@ -43,17 +43,17 @@ def create_lines(data):
 #                     res = create_lines(data)
 #                     out.writelines(res)
 
-# with open("graphics/" + "test_map.txt", "r") as inp:
-#     with open("graphics/" + "test_map", "w") as out:
-#         data = "\0" + chr(4) + chr(3) + chr(2) + inp.read()
-#         res = create_lines(data)
-#         out.writelines(res)
-
-with open("graphics/texts/" + "youwin.txt", "r") as inp:
-    with open("graphics/texts/" + "youwin", "w") as out:
+with open("graphics/" + "test_map.txt", "r") as inp:
+    with open("graphics/" + "test_map0", "w") as out:
         data = inp.read()
         res = create_lines(data)
         out.writelines(res)
+
+# with open("graphics/texts/" + "youattak.txt", "r") as inp:
+#     with open("graphics/texts/" + "youattak", "w") as out:
+#         data = inp.read()
+#         res = create_lines(data)
+#         out.writelines(res)
 
 # with open("graphics/" + "atackBoard.txt", "r") as inp:
 #     with open("graphics/" + "atackBoard", "w") as out:
