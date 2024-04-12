@@ -1,1 +1,1 @@
-                             You won!
+                  You won!                .                 type 'q' to reset game!

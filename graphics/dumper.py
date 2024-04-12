@@ -43,8 +43,8 @@ def create_lines(data):
 #                     res = create_lines(data)
 #                     out.writelines(res)
 
-with open("graphics/texts/" + "youWOn.txt", "r") as inp:
-    with open("graphics/texts/" + "youWOn", "w") as out:
+with open("graphics/texts/" + "youLose.txt", "r") as inp:
+    with open("graphics/texts/" + "youLose", "w") as out:
         data = inp.read()
         res = create_lines(data)
         out.writelines(res)
