@@ -10369,18 +10369,20 @@
       <rect fill="none" height="21" stroke="#000000" stroke-width="2" width="92" x="50" y="60"/>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="95" y="73">char parser</text>
       <circ-port height="8" pin="180,30" width="8" x="46" y="66"/>
-      <circ-port height="10" pin="150,230" width="10" x="135" y="65"/>
+      <circ-port height="10" pin="180,230" width="10" x="135" y="65"/>
       <circ-anchor facing="east" height="6" width="6" x="137" y="67"/>
     </appear>
-    <wire from="(130,120)" to="(140,120)"/>
-    <wire from="(130,240)" to="(140,240)"/>
-    <wire from="(130,360)" to="(140,360)"/>
-    <wire from="(150,350)" to="(150,370)"/>
-    <wire from="(130,340)" to="(130,350)"/>
-    <wire from="(130,220)" to="(130,230)"/>
-    <wire from="(130,100)" to="(130,110)"/>
-    <wire from="(150,110)" to="(150,230)"/>
-    <wire from="(150,230)" to="(150,350)"/>
+    <wire from="(180,350)" to="(180,480)"/>
+    <wire from="(180,160)" to="(180,230)"/>
+    <wire from="(160,150)" to="(160,160)"/>
+    <wire from="(160,340)" to="(160,350)"/>
+    <wire from="(130,180)" to="(130,220)"/>
+    <wire from="(130,120)" to="(130,160)"/>
+    <wire from="(180,480)" to="(180,520)"/>
+    <wire from="(150,490)" to="(170,490)"/>
+    <wire from="(160,170)" to="(170,170)"/>
+    <wire from="(180,230)" to="(180,350)"/>
+    <wire from="(130,360)" to="(170,360)"/>
     <comp lib="0" loc="(60,110)" name="Constant">
       <a name="width" val="8"/>
       <a name="value" val="0x65"/>
@@ -10390,10 +10392,40 @@
       <a name="value" val="0x35"/>
     </comp>
     <comp lib="3" loc="(100,140)" name="Comparator"/>
-    <comp lib="6" loc="(366,282)" name="Text">
-      <a name="text" val="3 - враг"/>
+    <comp lib="3" loc="(100,510)" name="Comparator"/>
+    <comp lib="1" loc="(130,220)" name="AND Gate">
+      <a name="size" val="30"/>
+      <a name="inputs" val="2"/>
     </comp>
-    <comp lib="3" loc="(100,260)" name="Comparator"/>
+    <comp lib="1" loc="(180,350)" name="Controlled Buffer">
+      <a name="width" val="2"/>
+    </comp>
+    <comp lib="0" loc="(180,230)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="2"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="output key"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="3" loc="(100,200)" name="Comparator"/>
+    <comp lib="0" loc="(60,480)" name="Constant">
+      <a name="width" val="8"/>
+      <a name="value" val="0x45"/>
+    </comp>
+    <comp lib="0" loc="(160,340)" name="Constant">
+      <a name="facing" val="south"/>
+      <a name="width" val="2"/>
+      <a name="value" val="0x3"/>
+    </comp>
+    <comp lib="0" loc="(60,460)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="width" val="8"/>
+      <a name="label" val="elem"/>
+    </comp>
+    <comp lib="6" loc="(349,153)" name="Text">
+      <a name="text" val="0 - не сущность"/>
+    </comp>
     <comp lib="0" loc="(180,30)" name="Pin">
       <a name="width" val="8"/>
       <a name="tristate" val="false"/>
@@ -10404,17 +10436,12 @@
       <a name="width" val="8"/>
       <a name="value" val="0x30"/>
     </comp>
-    <comp lib="0" loc="(130,220)" name="Constant">
-      <a name="facing" val="south"/>
-      <a name="width" val="2"/>
-      <a name="value" val="0x2"/>
+    <comp lib="0" loc="(60,500)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="width" val="8"/>
+      <a name="label" val="elem"/>
     </comp>
-    <comp lib="6" loc="(361,227)" name="Text">
-      <a name="text" val="0 - не сущность"/>
-    </comp>
-    <comp lib="6" loc="(362,246)" name="Text">
-      <a name="text" val="1 - еда"/>
-    </comp>
+    <comp lib="3" loc="(100,470)" name="Comparator"/>
     <comp lib="0" loc="(60,90)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="width" val="8"/>
@@ -10424,18 +10451,19 @@
       <a name="width" val="8"/>
       <a name="label" val="elem"/>
     </comp>
-    <comp lib="6" loc="(57,68)" name="Text">
-      <a name="text" val="is it eat in cell"/>
+    <comp lib="0" loc="(60,190)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="width" val="8"/>
+      <a name="label" val="elem"/>
     </comp>
-    <comp lib="1" loc="(130,240)" name="AND Gate">
-      <a name="size" val="30"/>
-      <a name="inputs" val="2"/>
-    </comp>
-    <comp lib="6" loc="(364,261)" name="Text">
-      <a name="text" val="2 - оружие"/>
-    </comp>
-    <comp lib="1" loc="(150,350)" name="Controlled Buffer">
+    <comp lib="1" loc="(180,160)" name="Controlled Buffer">
       <a name="width" val="2"/>
+    </comp>
+    <comp lib="6" loc="(354,208)" name="Text">
+      <a name="text" val="3 - враг"/>
+    </comp>
+    <comp lib="6" loc="(64,69)" name="Text">
+      <a name="text" val="is it eat in cell"/>
     </comp>
     <comp lib="0" loc="(60,370)" name="Tunnel">
       <a name="facing" val="east"/>
@@ -10443,50 +10471,71 @@
       <a name="label" val="elem"/>
     </comp>
     <comp lib="3" loc="(100,380)" name="Comparator"/>
-    <comp lib="1" loc="(150,110)" name="Controlled Buffer">
-      <a name="width" val="2"/>
+    <comp lib="0" loc="(180,520)" name="Pull Resistor">
+      <a name="facing" val="north"/>
     </comp>
     <comp lib="0" loc="(60,330)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="width" val="8"/>
       <a name="label" val="elem"/>
     </comp>
-    <comp lib="0" loc="(60,270)" name="Constant">
-      <a name="width" val="8"/>
-      <a name="value" val="0x65"/>
+    <comp lib="1" loc="(160,170)" name="OR Gate">
+      <a name="size" val="30"/>
+      <a name="inputs" val="2"/>
     </comp>
-    <comp lib="0" loc="(60,230)" name="Constant">
+    <comp lib="0" loc="(60,230)" name="Tunnel">
+      <a name="facing" val="east"/>
       <a name="width" val="8"/>
-      <a name="value" val="0x6b"/>
+      <a name="label" val="elem"/>
+    </comp>
+    <comp lib="6" loc="(350,172)" name="Text">
+      <a name="text" val="1 - еда / оружие"/>
+    </comp>
+    <comp lib="6" loc="(353,193)" name="Text">
+      <a name="text" val="2 - выход"/>
     </comp>
     <comp lib="3" loc="(100,100)" name="Comparator"/>
-    <comp lib="0" loc="(150,370)" name="Pull Resistor">
-      <a name="facing" val="north"/>
+    <comp lib="3" loc="(100,240)" name="Comparator"/>
+    <comp lib="0" loc="(60,520)" name="Constant">
+      <a name="width" val="8"/>
+      <a name="value" val="0x57"/>
+    </comp>
+    <comp lib="1" loc="(180,480)" name="Controlled Buffer">
+      <a name="width" val="2"/>
     </comp>
     <comp lib="0" loc="(60,150)" name="Constant">
       <a name="width" val="8"/>
       <a name="value" val="0x60"/>
     </comp>
-    <comp lib="6" loc="(69,187)" name="Text">
-      <a name="text" val="is it weapon in cell"/>
+    <comp lib="0" loc="(60,250)" name="Constant">
+      <a name="width" val="8"/>
+      <a name="value" val="0x65"/>
     </comp>
-    <comp lib="0" loc="(130,100)" name="Constant">
+    <comp lib="6" loc="(73,436)" name="Text">
+      <a name="text" val="is it exit in cell"/>
+    </comp>
+    <comp lib="0" loc="(160,480)" name="Constant">
       <a name="facing" val="south"/>
       <a name="width" val="2"/>
+      <a name="value" val="0x2"/>
+    </comp>
+    <comp lib="0" loc="(60,210)" name="Constant">
+      <a name="width" val="8"/>
+      <a name="value" val="0x6b"/>
+    </comp>
+    <comp lib="6" loc="(68,173)" name="Text">
+      <a name="text" val="is it weapon in cell"/>
+    </comp>
+    <comp lib="6" loc="(342,126)" name="Text">
+      <a name="text" val="Проверка входного значения"/>
     </comp>
     <comp lib="1" loc="(130,360)" name="AND Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
     </comp>
-    <comp lib="1" loc="(150,230)" name="Controlled Buffer">
-      <a name="width" val="2"/>
+    <comp lib="1" loc="(150,490)" name="OR Gate">
+      <a name="inputs" val="2"/>
     </comp>
-    <comp lib="0" loc="(60,210)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="width" val="8"/>
-      <a name="label" val="elem"/>
-    </comp>
-    <comp lib="3" loc="(100,220)" name="Comparator"/>
     <comp lib="1" loc="(130,120)" name="AND Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
@@ -10496,29 +10545,12 @@
       <a name="width" val="8"/>
       <a name="label" val="elem"/>
     </comp>
-    <comp lib="0" loc="(60,250)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="width" val="8"/>
-      <a name="label" val="elem"/>
-    </comp>
-    <comp lib="6" loc="(354,200)" name="Text">
-      <a name="text" val="Проверка входного значения"/>
-    </comp>
-    <comp lib="0" loc="(150,230)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="width" val="2"/>
-      <a name="tristate" val="false"/>
-      <a name="label" val="output key"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="0" loc="(130,340)" name="Constant">
-      <a name="facing" val="south"/>
-      <a name="width" val="2"/>
-      <a name="value" val="0x3"/>
-    </comp>
     <comp lib="6" loc="(73,306)" name="Text">
       <a name="text" val="is it enemy in cell"/>
+    </comp>
+    <comp lib="0" loc="(160,150)" name="Constant">
+      <a name="facing" val="south"/>
+      <a name="width" val="2"/>
     </comp>
   </circuit>
   <circuit name="plusMinus1">
