@@ -1,8 +1,6 @@
 from random import choice, randint  # выбирает случайный элемент из списка
 
 
-# random.seed(1)
-
 """ГЕНЕРАЦИЯ ЛАБИРИНТА"""
 """
 121 byte - maze image
@@ -51,14 +49,8 @@ mapp[start] = 102  # ложим палку в стартовую ячейку
 
 stack = [(start, start)]  # стек (добавление в конец | изъятие с конца)
 
-stl = 0
-
 while stack:  # стек пуст - лабиринт сгенерирован
-    stl = max(stl, len(stack))
-    print(stl)
     cur = stack.pop(-1)
-    printF(cur[0])
-
     if mapp[cur[0]] == 0:                                 # Мы в развилке
         mapp[cur[1]] = 32  # строим к ней путь
         mapp[cur[0]] = 44
@@ -66,28 +58,22 @@ while stack:  # стек пуст - лабиринт сгенерирован
         for i in neighbours:  # заносим в стек соседей
             stack.append(i)
         continue
-
     neighbours = getN(cur[0])  # ищем свободных соседей
-
     if neighbours == []:  # (нет соседей = мы в тупике) или разматываемся
         if not ext:
             mapp[cur[0]] = 69
             ext = True
         continue  # возвращаемся к последней развилке по стеку
-
     neighbour = choice(neighbours)  # выбираем случайного свободного соседа
     mapp[neighbour[1]] = 32  # строим к ниму путь
     mapp[neighbour[0]] = 44
-
     for i in neighbours:  # заносим в стек остальных соседей
         if i != neighbour:
             stack.append(i)
-
     stack.append(neighbour)  # заносим текущую в стек
 
 
 printF(start)
-# print(stl)
 
 """ЗАПОЛНЕНИЕ ЛАБИРИНТА"""
 """
@@ -118,12 +104,15 @@ food = {'a': 10-4, 'b': 6-4, 'c': 15-4, 'd': 20-4}  # BUG SPIDER CENTIPEDE WORM
 """weapon"""
 weapon = {'g': 20, 'h': 15, 'i': 10}  # DEFAULT_STICK sharpened_bone OLD_CLAW bone_cudgel BFG9000
 """enemy"""
-enemy = {'1': (20, 5), '2': (10, 3), '3': (50, 20), '4': (30, 10)}
+enemy = {'1': (20, 5), '2': (10, 3), '3': (50, 20), '4': (30, 10)}  # (HP, DMG)
+"""----"""
+foodTD = 30
+weaponTD = 5
 """----"""
 queue = [(start, start)]  # очередь (добавление в конец | изъятие с начала)
 state = [30, 5]  # 0 - food 1 - weapon dmg
 k = 97
-# st = 0
+
 while queue:  # очередь пустa - Все предметы расставлены
     cur = queue.pop(0)  # достать первый
 
@@ -131,18 +120,22 @@ while queue:  # очередь пустa - Все предметы расста�
         mapp[cur[0]] = 32
         a = randint(0, 7)
         if 2 >= a >= 1:  # ставим еду
-            pass
+            fd = choice(list(food.keys()))
+            mapp[cur[0]] = ord(fd)
+            foodTD += food[fd]
         elif a == 3:  # ставим оружие
-            pass
-        elif 5 >= a >= 4:  # ставим враг
-            pass  #
+            wp = choice(list(weapon.keys()))
+            mapp[cur[0]] = ord(wp)
+            weaponTD = max(weapon[wp], weaponTD)
+        elif 7 >= a >= 4:  # ставим врага если можем
+            en = choice(list(enemy.keys()))
+            en_dmged = (enemy[en][0] / weaponTD) * enemy[en][1]
+            if en_dmged < foodTD:
+                mapp[cur[0]] = ord(en)
+                foodTD -= en_dmged
 
     neighbours = getPP(cur[0])  # ищем свободных соседей
     for i in neighbours:  # заносим в очередь соседей
         queue.append(i)
-        # st += 1
-
-    printF(start)
 
 printF(start)
-# print(st)
