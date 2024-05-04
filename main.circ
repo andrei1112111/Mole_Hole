@@ -848,6 +848,12 @@
       <a name="facing" val="east"/>
       <a name="label" val="3onInp"/>
     </comp>
+    <comp lib="5" loc="(1420,1180)" name="DotMatrix">
+      <a name="inputtype" val="row"/>
+      <a name="matrixcols" val="1"/>
+      <a name="matrixrows" val="1"/>
+      <a name="offcolor" val="#40404000"/>
+    </comp>
     <comp lib="0" loc="(1070,1470)" name="Tunnel">
       <a name="facing" val="south"/>
       <a name="width" val="8"/>
@@ -895,7 +901,6 @@
       <a name="color" val="#bfbfbf"/>
       <a name="offcolor" val="#40404000"/>
     </comp>
-    <comp loc="(1330,1170)" name="printItem"/>
     <comp lib="0" loc="(2340,710)" name="Tunnel">
       <a name="label" val="PLAYERHPCH"/>
     </comp>
@@ -918,6 +923,13 @@
     <comp loc="(1490,540)" name="quick"/>
     <comp lib="0" loc="(2050,770)" name="Constant">
       <a name="width" val="2"/>
+    </comp>
+    <comp lib="5" loc="(1430,1170)" name="DotMatrix">
+      <a name="inputtype" val="row"/>
+      <a name="matrixcols" val="9"/>
+      <a name="matrixrows" val="9"/>
+      <a name="color" val="#000000"/>
+      <a name="offcolor" val="#999999"/>
     </comp>
     <comp lib="2" loc="(3370,1560)" name="Multiplexer">
       <a name="width" val="5"/>
@@ -982,7 +994,6 @@
       <a name="facing" val="east"/>
       <a name="label" val="MOVEinited"/>
     </comp>
-    <comp loc="(1430,1170)" name="printItem"/>
     <comp lib="0" loc="(140,1520)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="width" val="8"/>
@@ -1023,12 +1034,6 @@
     </comp>
     <comp lib="0" loc="(3000,1460)" name="Bit Extender">
       <a name="out_width" val="5"/>
-    </comp>
-    <comp lib="5" loc="(1320,1180)" name="DotMatrix">
-      <a name="inputtype" val="row"/>
-      <a name="matrixcols" val="1"/>
-      <a name="matrixrows" val="1"/>
-      <a name="offcolor" val="#40404000"/>
     </comp>
     <comp loc="(2650,1350)" name="whatIs">
       <a name="facing" val="west"/>
@@ -1141,6 +1146,13 @@
       <a name="facing" val="north"/>
       <a name="label" val="5onInp"/>
     </comp>
+    <comp lib="5" loc="(1330,1170)" name="DotMatrix">
+      <a name="inputtype" val="row"/>
+      <a name="matrixcols" val="9"/>
+      <a name="matrixrows" val="9"/>
+      <a name="color" val="#000000"/>
+      <a name="offcolor" val="#999999"/>
+    </comp>
     <comp lib="0" loc="(870,1250)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="width" val="12"/>
@@ -1181,6 +1193,11 @@
       <a name="width" val="2"/>
       <a name="label" val="ATCcurEN"/>
     </comp>
+    <comp lib="0" loc="(1380,1260)" name="Tunnel">
+      <a name="width" val="8"/>
+      <a name="label" val="INVENTORY2"/>
+      <a name="labelfont" val="SansSerif plain 6"/>
+    </comp>
     <comp lib="0" loc="(1050,2080)" name="Tunnel">
       <a name="width" val="8"/>
       <a name="label" val="ENHPst"/>
@@ -1211,6 +1228,7 @@
       <a name="width" val="8"/>
       <a name="label" val="p(x-2,y)"/>
     </comp>
+    <comp loc="(1430,1170)" name="printItem"/>
     <comp lib="1" loc="(3380,1440)" name="OR Gate">
       <a name="facing" val="west"/>
       <a name="size" val="30"/>
@@ -1384,11 +1402,6 @@
       <a name="width" val="2"/>
       <a name="label" val="PlDir"/>
     </comp>
-    <comp lib="0" loc="(1480,1260)" name="Tunnel">
-      <a name="width" val="8"/>
-      <a name="label" val="INVENTORY3"/>
-      <a name="labelfont" val="SansSerif plain 6"/>
-    </comp>
     <comp lib="3" loc="(3020,1520)" name="Comparator"/>
     <comp lib="6" loc="(2131,966)" name="Text">
       <a name="text" val="if hunger equals health, you will die!"/>
@@ -1478,6 +1491,11 @@
       <a name="font" val="SansSerif plain 20"/>
     </comp>
     <comp lib="1" loc="(2310,740)" name="Controlled Buffer"/>
+    <comp lib="0" loc="(1480,1260)" name="Tunnel">
+      <a name="width" val="8"/>
+      <a name="label" val="INVENTORY3"/>
+      <a name="labelfont" val="SansSerif plain 6"/>
+    </comp>
     <comp lib="0" loc="(2620,370)" name="Constant">
       <a name="width" val="5"/>
       <a name="value" val="0x6"/>
@@ -1549,6 +1567,11 @@
       <a name="label" val="InpFlpreSTRT"/>
     </comp>
     <comp lib="4" loc="(450,1040)" name="Register"/>
+    <comp lib="0" loc="(1680,1260)" name="Tunnel">
+      <a name="width" val="8"/>
+      <a name="label" val="INVENTORY5"/>
+      <a name="labelfont" val="SansSerif plain 6"/>
+    </comp>
     <comp lib="0" loc="(3080,240)" name="Tunnel">
       <a name="label" val="mainRES"/>
       <a name="labelfont" val="SansSerif plain 6"/>
@@ -1644,6 +1667,14 @@
       <a name="width" val="8"/>
       <a name="label" val="INVENTORY5p"/>
       <a name="labelfont" val="SansSerif plain 10"/>
+    </comp>
+    <comp lib="0" loc="(1360,1260)" name="Tunnel">
+      <a name="width" val="26"/>
+      <a name="label" val="2Bus"/>
+      <a name="labelfont" val="SansSerif plain 6"/>
+    </comp>
+    <comp lib="6" loc="(1390,1313)" name="Text">
+      <a name="text" val="input: "/>
     </comp>
     <comp loc="(2650,1390)" name="whatIs">
       <a name="facing" val="west"/>
@@ -2055,11 +2086,6 @@
     <comp lib="3" loc="(2250,2080)" name="Comparator">
       <a name="mode" val="unsigned"/>
     </comp>
-    <comp lib="0" loc="(1660,1260)" name="Tunnel">
-      <a name="width" val="26"/>
-      <a name="label" val="5Bus"/>
-      <a name="labelfont" val="SansSerif plain 6"/>
-    </comp>
     <comp lib="0" loc="(2440,1510)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="width" val="26"/>
@@ -2447,11 +2473,6 @@
       <a name="labelfont" val="SansSerif plain 6"/>
     </comp>
     <comp loc="(310,2380)" name="quick"/>
-    <comp lib="5" loc="(1330,1280)" name="TTY">
-      <a name="rows" val="1"/>
-      <a name="cols" val="13"/>
-      <a name="bg" val="#ffffff"/>
-    </comp>
     <comp lib="2" loc="(3370,1290)" name="Multiplexer">
       <a name="facing" val="west"/>
       <a name="width" val="6"/>
@@ -2505,6 +2526,11 @@
     </comp>
     <comp lib="0" loc="(430,1270)" name="Tunnel">
       <a name="label" val="itemRES1"/>
+    </comp>
+    <comp lib="5" loc="(1330,1280)" name="TTY">
+      <a name="rows" val="1"/>
+      <a name="cols" val="13"/>
+      <a name="bg" val="#ffffff"/>
     </comp>
     <comp lib="0" loc="(780,410)" name="Tunnel">
       <a name="facing" val="north"/>
@@ -2649,6 +2675,11 @@
     <comp lib="0" loc="(3330,1180)" name="Constant">
       <a name="width" val="8"/>
       <a name="value" val="0x5d"/>
+    </comp>
+    <comp lib="0" loc="(1460,1260)" name="Tunnel">
+      <a name="width" val="26"/>
+      <a name="label" val="3Bus"/>
+      <a name="labelfont" val="SansSerif plain 6"/>
     </comp>
     <comp lib="0" loc="(2290,840)" name="Constant">
       <a name="width" val="2"/>
@@ -2810,6 +2841,7 @@
       <a name="facing" val="east"/>
       <a name="label" val="ATCnEhp"/>
     </comp>
+    <comp loc="(1330,1270)" name="printText"/>
     <comp lib="0" loc="(1580,310)" name="Tunnel">
       <a name="facing" val="north"/>
       <a name="label" val="mapPREst"/>
@@ -2975,6 +3007,19 @@
       <a name="size" val="30"/>
       <a name="inputs" val="3"/>
     </comp>
+    <comp lib="5" loc="(1420,1170)" name="DotMatrix">
+      <a name="inputtype" val="row"/>
+      <a name="matrixcols" val="1"/>
+      <a name="matrixrows" val="1"/>
+      <a name="color" val="#ff0005"/>
+      <a name="offcolor" val="#40404000"/>
+    </comp>
+    <comp lib="5" loc="(1320,1180)" name="DotMatrix">
+      <a name="inputtype" val="row"/>
+      <a name="matrixcols" val="1"/>
+      <a name="matrixrows" val="1"/>
+      <a name="offcolor" val="#40404000"/>
+    </comp>
     <comp lib="0" loc="(400,380)" name="Tunnel">
       <a name="label" val="INV3ch"/>
     </comp>
@@ -2997,14 +3042,6 @@
     </comp>
     <comp lib="0" loc="(530,1590)" name="Tunnel">
       <a name="label" val="AddNewHunger"/>
-    </comp>
-    <comp loc="(1630,1270)" name="printText"/>
-    <comp lib="5" loc="(1420,1170)" name="DotMatrix">
-      <a name="inputtype" val="row"/>
-      <a name="matrixcols" val="1"/>
-      <a name="matrixrows" val="1"/>
-      <a name="color" val="#ff0005"/>
-      <a name="offcolor" val="#40404000"/>
     </comp>
     <comp lib="1" loc="(3060,1370)" name="OR Gate">
       <a name="facing" val="west"/>
@@ -3049,7 +3086,7 @@
     </comp>
     <comp lib="4" loc="(2640,1880)" name="Counter">
       <a name="width" val="12"/>
-      <a name="max" val="0xa00"/>
+      <a name="max" val="0x500"/>
     </comp>
     <comp lib="0" loc="(450,1040)" name="Tunnel">
       <a name="width" val="8"/>
@@ -3127,17 +3164,13 @@
       <a name="label" val="gameState"/>
     </comp>
     <comp lib="0" loc="(2260,1050)" name="Clock"/>
+    <comp loc="(1630,1270)" name="printText"/>
     <comp lib="4" loc="(450,860)" name="Register"/>
     <comp lib="0" loc="(1600,1750)" name="Tunnel">
       <a name="facing" val="south"/>
       <a name="label" val="StateCh"/>
     </comp>
     <comp loc="(1940,2140)" name="quick"/>
-    <comp lib="0" loc="(1380,1260)" name="Tunnel">
-      <a name="width" val="8"/>
-      <a name="label" val="INVENTORY2"/>
-      <a name="labelfont" val="SansSerif plain 6"/>
-    </comp>
     <comp lib="0" loc="(120,1030)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="width" val="8"/>
@@ -3177,13 +3210,6 @@
       <a name="width" val="12"/>
       <a name="label" val="MAP(tospace)ELEM"/>
     </comp>
-    <comp lib="5" loc="(1320,1170)" name="DotMatrix">
-      <a name="inputtype" val="row"/>
-      <a name="matrixcols" val="1"/>
-      <a name="matrixrows" val="1"/>
-      <a name="color" val="#ff0005"/>
-      <a name="offcolor" val="#40404000"/>
-    </comp>
     <comp lib="1" loc="(400,2170)" name="Controlled Buffer"/>
     <comp lib="1" loc="(510,1570)" name="Controlled Buffer"/>
     <comp lib="5" loc="(1190,760)" name="DotMatrix">
@@ -3192,6 +3218,11 @@
       <a name="matrixrows" val="32"/>
       <a name="color" val="#e6e6e6"/>
       <a name="offcolor" val="#40404000"/>
+    </comp>
+    <comp lib="0" loc="(1660,1260)" name="Tunnel">
+      <a name="width" val="26"/>
+      <a name="label" val="5Bus"/>
+      <a name="labelfont" val="SansSerif plain 6"/>
     </comp>
     <comp lib="0" loc="(3370,870)" name="Splitter">
       <a name="facing" val="west"/>
@@ -3435,21 +3466,9 @@
     <comp lib="0" loc="(810,550)" name="Tunnel">
       <a name="label" val="mainRES"/>
     </comp>
-    <comp lib="5" loc="(1430,1170)" name="DotMatrix">
-      <a name="inputtype" val="row"/>
-      <a name="matrixcols" val="9"/>
-      <a name="matrixrows" val="9"/>
-      <a name="color" val="#000000"/>
-      <a name="offcolor" val="#999999"/>
-    </comp>
     <comp lib="0" loc="(2740,1450)" name="Tunnel">
       <a name="width" val="8"/>
       <a name="label" val="p(x,y+2)"/>
-    </comp>
-    <comp lib="0" loc="(1360,1260)" name="Tunnel">
-      <a name="width" val="26"/>
-      <a name="label" val="2Bus"/>
-      <a name="labelfont" val="SansSerif plain 6"/>
     </comp>
     <comp lib="0" loc="(960,2070)" name="Tunnel">
       <a name="facing" val="east"/>
@@ -3503,6 +3522,7 @@
       <a name="width" val="7"/>
       <a name="value" val="0xd"/>
     </comp>
+    <comp loc="(1330,1170)" name="printItem"/>
     <comp lib="0" loc="(2280,340)" name="Tunnel">
       <a name="facing" val="north"/>
       <a name="label" val="changePCy"/>
@@ -3594,11 +3614,6 @@
     <comp loc="(1910,1160)" name="printHP"/>
     <comp lib="0" loc="(970,2120)" name="Bit Extender">
       <a name="out_width" val="6"/>
-    </comp>
-    <comp lib="5" loc="(1630,1280)" name="TTY">
-      <a name="rows" val="1"/>
-      <a name="cols" val="13"/>
-      <a name="bg" val="#ffffff"/>
     </comp>
     <comp loc="(2340,2080)" name="quick"/>
     <comp lib="1" loc="(1970,1760)" name="NOT Gate">
@@ -3770,6 +3785,11 @@
     <comp loc="(1440,1330)" name="quick">
       <a name="facing" val="west"/>
     </comp>
+    <comp lib="5" loc="(1630,1280)" name="TTY">
+      <a name="rows" val="1"/>
+      <a name="cols" val="13"/>
+      <a name="bg" val="#ffffff"/>
+    </comp>
     <comp lib="1" loc="(2160,720)" name="AND Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
@@ -3865,11 +3885,6 @@
       <a name="facing" val="east"/>
       <a name="label" val="4onInp"/>
     </comp>
-    <comp lib="0" loc="(1680,1260)" name="Tunnel">
-      <a name="width" val="8"/>
-      <a name="label" val="INVENTORY5"/>
-      <a name="labelfont" val="SansSerif plain 6"/>
-    </comp>
     <comp lib="0" loc="(2090,830)" name="Tunnel">
       <a name="label" val="gS2"/>
     </comp>
@@ -3940,6 +3955,13 @@
     <comp lib="0" loc="(430,1350)" name="Tunnel">
       <a name="label" val="itemRES5"/>
     </comp>
+    <comp lib="5" loc="(1320,1170)" name="DotMatrix">
+      <a name="inputtype" val="row"/>
+      <a name="matrixcols" val="1"/>
+      <a name="matrixrows" val="1"/>
+      <a name="color" val="#ff0005"/>
+      <a name="offcolor" val="#40404000"/>
+    </comp>
     <comp loc="(2650,1430)" name="whatIs">
       <a name="facing" val="west"/>
     </comp>
@@ -3962,11 +3984,6 @@
     </comp>
     <comp lib="0" loc="(2230,1070)" name="Tunnel">
       <a name="label" val="mainRES"/>
-    </comp>
-    <comp lib="0" loc="(1460,1260)" name="Tunnel">
-      <a name="width" val="26"/>
-      <a name="label" val="3Bus"/>
-      <a name="labelfont" val="SansSerif plain 6"/>
     </comp>
     <comp lib="4" loc="(1030,520)" name="Register"/>
     <comp lib="4" loc="(2310,280)" name="Register">
@@ -4046,13 +4063,6 @@
       <a name="width" val="1"/>
     </comp>
     <comp lib="3" loc="(400,1540)" name="Adder"/>
-    <comp lib="5" loc="(1330,1170)" name="DotMatrix">
-      <a name="inputtype" val="row"/>
-      <a name="matrixcols" val="9"/>
-      <a name="matrixrows" val="9"/>
-      <a name="color" val="#000000"/>
-      <a name="offcolor" val="#999999"/>
-    </comp>
     <comp lib="0" loc="(1440,1360)" name="Tunnel">
       <a name="label" val="qres"/>
       <a name="labelfont" val="SansSerif plain 6"/>
@@ -4182,7 +4192,6 @@
       <a name="width" val="12"/>
       <a name="label" val="p(x-1,y)_elemOnMap"/>
     </comp>
-    <comp loc="(1330,1270)" name="printText"/>
     <comp lib="0" loc="(1090,1540)" name="Tunnel">
       <a name="label" val="MoveFl"/>
     </comp>
@@ -4898,12 +4907,6 @@
     <comp lib="6" loc="(814,808)" name="Text">
       <a name="text" val="PLAYER MOVEMENT"/>
       <a name="font" val="SansSerif plain 24"/>
-    </comp>
-    <comp lib="5" loc="(1420,1180)" name="DotMatrix">
-      <a name="inputtype" val="row"/>
-      <a name="matrixcols" val="1"/>
-      <a name="matrixrows" val="1"/>
-      <a name="offcolor" val="#40404000"/>
     </comp>
     <comp lib="0" loc="(1130,2020)" name="Tunnel">
       <a name="label" val="ATCplAttaked1"/>
